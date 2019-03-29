@@ -3,7 +3,7 @@
   "version": "0.0.0-semantically-released",
   "private": true,
   "scripts": {
-    "start": "json-server -w --fks _address --id=address --host 0.0.0.0 --routes routes.json --middlewares middleware.js -p 80 index.js",
+    "start": "json-server -w --fks Address --id address --host 0.0.0.0 --routes routes.json --middlewares middleware.js -p 80 index.js",
     "dev": "nodemon -w index.js -w middleware.js -w routes.json --exec npm start"
   },
   "dependencies": {
