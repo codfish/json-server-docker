@@ -1,13 +1,12 @@
 version: '3'
 
 services:
-  api:
+  json-server:
     build: .
     command: npm run dev
     volumes:
-      - ./index.js:/app/index.js
-      - ./package.json:/app/package.json:delegated
+      - ./db.js:/app/db.js
       - ./routes.json:/app/routes.json:delegated
       - ./middleware.js:/app/middleware.js:delegated
     environment:
-      VIRTUAL_HOST: json-server-docker.docker
+      VIRTUAL_HOST: json-server.docker
