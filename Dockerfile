@@ -1,12 +1,13 @@
-FROM node:11.12
+FROM node:12.4
 
 RUN mkdir /app
 WORKDIR /app
 
+RUN npm install -g json-server
 COPY package.json package-lock.json ./
 RUN npm ci --only="prod"
 
-COPY index.js middleware.js routes.json ./
+COPY ./db.js ./middleware.js ./routes.json ./server.sh ./
 
 EXPOSE 80
-CMD npm run start
+CMD [ "./server.sh" ]
