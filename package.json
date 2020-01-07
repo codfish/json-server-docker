@@ -22,7 +22,7 @@
     "@commitlint/travis-cli": "^8.0.0",
     "eslint": "^5.15.2",
     "eslint-config-codfish": "^2.3.0",
-    "husky": "^2.4.0",
+    "husky": "^4.0.0",
     "lint-staged": "^8.1.5",
     "markdownlint-cli": "^0.16.0",
     "prettier": "^1.16.4"
