@@ -19,7 +19,7 @@
   "devDependencies": {
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
-    "@commitlint/travis-cli": "^8.0.0",
+    "@commitlint/travis-cli": "^8.3.5",
     "eslint": "^5.15.2",
     "eslint-config-codfish": "^2.3.0",
     "husky": "^2.4.0",
