@@ -44,11 +44,12 @@ To test this image directly you can run:
 
 ```sh
 git clone git@github.com:codfish/json-server-docker.git
+cd json-server-docker
 docker-compose up -d
 ```
 
-It's recommended to first install & start [`docker-proxy`](https://github.com/aj-may/docker-proxy).
-The server will then be available at <http://json-server.docker>.
+It's recommended to first install & start [`dotdocker`](https://github.com/aj-may/dotdocker). The
+server will then be available at <http://json-server.docker>.
 
 ### Options
 
