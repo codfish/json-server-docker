@@ -1,3 +1,15 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [json-server-docker](#json-server-docker)
+  - [Usage](#usage)
+    - [Options](#options)
+    - [Full Example](#full-example)
+  - [Database File](#database-file)
+  - [Todo](#todo)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # json-server-docker
 
 Docker image for building a [json-server](https://github.com/typicode/json-server) application.
