@@ -6,6 +6,7 @@
     - [Options](#options)
     - [Full Example](#full-example)
   - [Database File](#database-file)
+  - [Local Development](#local-development)
   - [Todo](#todo)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -135,6 +136,14 @@ module.exports = () => ({
     // and so on...
   })),
 });
+```
+
+## Local Development
+
+```sh
+git clone git@github.com:codfish/json-server-docker.git
+cd json-server-docker
+docker-compose up -d
 ```
 
 ## Todo
