@@ -1,16 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [json-server-docker](#json-server-docker)
-  - [Usage](#usage)
-    - [Options](#options)
-    - [Full Example](#full-example)
-  - [Database File](#database-file)
-  - [Local Development](#local-development)
-  - [Todo](#todo)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # json-server-docker
 
 Docker image for building a [json-server](https://github.com/typicode/json-server) application.
@@ -19,24 +6,22 @@ This image will set up the application for you and allow you to simply mount in 
 source file", which by convention needs to be named `db.js`. You can also optionally mount in a
 `middleware.js` and `routes.json` file.
 
-Example `docker-compose.yml` file:
-
-```yml
-version: '3'
-
-services:
-  json-server:
-    image: codfish/json-server:0.15.0
-    volumes:
-      - ./db.js:/app/db.js:delegated
-      - ./routes.json:/app/routes.json:delegated
-      - ./middleware.js:/app/middleware.js:delegated
-```
-
 Image versions are based off of the
 [release versions for json-server](https://github.com/typicode/json-server/releases). However there
 is not an image for every version. See the available versions
 [here](https://hub.docker.com/r/codfish/json-server).
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Usage](#usage)
+  - [Options](#options)
+  - [Full Example](#full-example)
+- [Database File](#database-file)
+- [Maintaining/Contributing](#maintainingcontributing)
+- [Todo](#todo)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Usage
 
@@ -49,8 +34,12 @@ version: '3'
 
 services:
   json-server:
-    image: codfish/json-server:0.15.0
+    image: codfish/json-server
     command: npm run dev
+    volumes:
+      - ./db.js:/app/db.js
+      - ./routes.json:/app/routes.json:delegated
+      - ./middleware.js:/app/middleware.js:delegated
 ```
 
 To test this image directly you can run:
@@ -61,8 +50,8 @@ cd json-server-docker
 docker-compose up -d
 ```
 
-It's recommended to first install & start [`dotdocker`](https://github.com/aj-may/dotdocker). The
-server will then be available at <http://json-server.docker>.
+I highly recommend installing [`dotdocker`](https://github.com/aj-may/dotdocker) first. The
+container will then be accessible at <http://json-server.docker>.
 
 ### Options
 
@@ -102,7 +91,7 @@ Here's a recommended setup for local development with some optional overrides as
 ```yaml
 services:
   json-server:
-    image: codfish/json-server:0.15.0
+    image: codfish/json-server
     command: npm run dev
     volumes:
       - ./db.js:/app/db.js:delegated
@@ -138,13 +127,19 @@ module.exports = () => ({
 });
 ```
 
-## Local Development
+## Maintaining/Contributing
+
+- Bump version of `json-server` in [`Dockerfile`](./Dockerfile)
+- Bump node dependencies
+- Test it out
 
 ```sh
-git clone git@github.com:codfish/json-server-docker.git
-cd json-server-docker
-docker-compose up -d
+docker-compose up -d --build
 ```
+
+Check out <http://json-server.docker>. Update [`db.js`](./db.js), [`routes.json`](./routes.json), or
+[`middleware.js`](./middleware.js) to test out functionality. Changes should propagate
+automatically, just refresh the page.
 
 ## Todo
 

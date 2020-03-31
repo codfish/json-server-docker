@@ -15,7 +15,7 @@
     "nodemon": "^2.0.2"
   },
   "devDependencies": {
-    "cod-scripts": "^4.0.1"
+    "cod-scripts": "^4.0.2"
   },
   "eslintConfig": {
     "extends": [
