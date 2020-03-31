@@ -19,6 +19,7 @@ is not an image for every version. See the available versions
   - [Full Example](#full-example)
 - [Database File](#database-file)
 - [Maintaining/Contributing](#maintainingcontributing)
+  - [Releasing](#releasing)
 - [Todo](#todo)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -140,6 +141,29 @@ docker-compose up -d --build
 Check out <http://json-server.docker>. Update [`db.js`](./db.js), [`routes.json`](./routes.json), or
 [`middleware.js`](./middleware.js) to test out functionality. Changes should propagate
 automatically, just refresh the page.
+
+### Releasing
+
+**New version**:
+
+```sh
+git tag -f -m 'v0.17.0' v0.17.0
+git push origin master --tags
+```
+
+**Updating old version**
+
+We keep our versions in sync with `json-server`. This scenario would happen if there's a bug fix or
+feature change with our implementation but the `json-server` version doesn't change.
+
+```sh
+git tag -d v0.16.1
+git push origin :v0.16.1
+git tag -f -m 'v0.16.1' v0.16.1
+git push origin master --tags
+```
+
+Docker Hub is configured to automatically build on new tags pushed to GitHub.
 
 ## Todo
 
