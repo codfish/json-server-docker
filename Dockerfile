@@ -1,9 +1,11 @@
-FROM node:12.4
+FROM node:12
 
 RUN mkdir /app
 WORKDIR /app
 
-RUN npm install -g json-server
+ENV JSON_SERVER_VERSION=0.16.1
+
+RUN npm install -g json-server@${JSON_SERVER_VERSION}
 COPY package.json package-lock.json ./
 RUN npm ci --only="prod"
 

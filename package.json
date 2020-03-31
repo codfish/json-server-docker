@@ -5,26 +5,26 @@
   "scripts": {
     "start": "./server.sh",
     "dev": "nodemon -w db.js -w middleware.js -w routes.json --exec ./server.sh",
-    "fix": "npm run format && npm run lint -- --fix",
-    "format": "prettier --write \"**/*.{json,css,scss,md}\"",
-    "lint": "eslint .",
-    "lint:md": "markdownlint -i node_modules .",
-    "validate": "commitlint-travis && npm run lint && npm run lint:md"
+    "format": "cod-scripts format",
+    "lint": "cod-scripts lint"
   },
   "dependencies": {
-    "faker": "git+https://git@github.com/Marak/faker.js.git#a9a11ee",
-    "lodash": "^4.17.11",
-    "nodemon": "^1.19.1"
+    "@babel/runtime": "^7.9.2",
+    "faker": "git+https://git@github.com/Marak/faker.js.git#3b2fa4a",
+    "lodash": "^4.17.15",
+    "nodemon": "^2.0.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.0.0",
-    "@commitlint/config-conventional": "^8.0.0",
-    "@commitlint/travis-cli": "^8.0.0",
-    "eslint": "^5.15.2",
-    "eslint-config-codfish": "^2.3.0",
-    "husky": "^2.4.0",
-    "lint-staged": "^8.1.5",
-    "markdownlint-cli": "^0.16.0",
-    "prettier": "^1.16.4"
+    "cod-scripts": "^4.0.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "./node_modules/cod-scripts/eslint.js"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "cod-scripts pre-commit"
+    }
   }
 }
