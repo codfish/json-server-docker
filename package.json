@@ -9,13 +9,13 @@
     "lint": "cod-scripts lint"
   },
   "dependencies": {
-    "@babel/runtime": "^7.9.2",
+    "@babel/runtime": "^7.11.2",
     "faker": "git+https://git@github.com/Marak/faker.js.git#3b2fa4a",
-    "lodash": "^4.17.15",
-    "nodemon": "^2.0.2"
+    "lodash": "^4.17.20",
+    "nodemon": "^2.0.4"
   },
   "devDependencies": {
-    "cod-scripts": "^4.0.2"
+    "cod-scripts": "^4.0.3"
   },
   "eslintConfig": {
     "extends": [
