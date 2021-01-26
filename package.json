@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.11.2",
-    "faker": "git+https://git@github.com/Marak/faker.js.git#3b2fa4a",
+    "faker": "^5.2.0",
     "lodash": "^4.17.20",
     "nodemon": "^2.0.4"
   },
