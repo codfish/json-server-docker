@@ -148,7 +148,7 @@ automatically, just refresh the page.
 
 ```sh
 git tag -f -m 'v0.17.0' v0.17.0
-git push origin master --tags
+git push origin v0.17.0
 ```
 
 **Updating old version**
@@ -157,10 +157,7 @@ We keep our versions in sync with `json-server`. This scenario would happen if t
 feature change with our implementation but the `json-server` version doesn't change.
 
 ```sh
-git tag -d v0.16.1
-git push origin :v0.16.1
-git tag -f -m 'v0.16.1' v0.16.1
-git push origin master --tags
+git tag -fa v0.16.1 -m "Update v0.16.1 tag" && git push origin v0.16.1 --force
 ```
 
 Docker Hub is configured to automatically build on new tags pushed to GitHub.
