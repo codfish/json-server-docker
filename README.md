@@ -148,7 +148,7 @@ automatically, just refresh the page.
 
 ```sh
 git tag -f -m 'v0.17.0' v0.17.0
-git push origin master --tags
+git push origin v0.17.0
 ```
 
 **Updating old version**
