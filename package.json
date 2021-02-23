@@ -9,7 +9,7 @@
     "lint": "cod-scripts lint"
   },
   "dependencies": {
-    "@babel/runtime": "^7.12.18",
+    "@babel/runtime": "^7.13.4",
     "faker": "^5.4.0",
     "lodash": "^4.17.21",
     "nodemon": "^2.0.7"
