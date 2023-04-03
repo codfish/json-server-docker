@@ -1,9 +1,9 @@
-FROM node:14.15-slim
+FROM node:18.15.0-slim
 
 RUN mkdir /app
 WORKDIR /app
 
-ENV JSON_SERVER_VERSION=0.16.3
+ENV JSON_SERVER_VERSION=0.17.3
 
 RUN npm install -g json-server@${JSON_SERVER_VERSION}
 COPY package.json package-lock.json ./
