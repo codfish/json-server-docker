@@ -51,8 +51,10 @@ cd json-server-docker
 docker-compose up -d
 ```
 
-I highly recommend installing [`dotdocker`](https://github.com/aj-may/dotdocker) first. The
-container will then be accessible at <http://json-server.docker>.
+Visit <http://localhost:9999/> to see your running JSON Server.
+
+If you have [`dotdocker`](https://github.com/aj-may/dotdocker) installed the server will also be
+accessible at <http://json-server.docker>.
 
 ### Options
 
@@ -109,22 +111,22 @@ services:
 ## Database File
 
 When building your mock api's you'll most like want to generate some fake data and return a number
-of items for a specific collection. I've included [Lodash](https://lodash.com/) &
-[faker.js](https://github.com/Marak/faker.js) in the image to help facilitate doing these sorts of
-things inside your source file, or middleware for that matter. Here's an example of what I mean:
+of items for a specific collection. [Faker](https://github.com/faker-js/faker) is included in the
+image to help facilitate doing these sorts of things inside your db or middleware files. For
+example:
 
 ```js
-const faker = require('faker');
-const times = require('lodash/times');
-const startCase = require('lodash/startCase');
+const faker = require('@faker-js/faker');
 
 module.exports = () => ({
-  posts: times(100, index => ({
-    id: index,
-    title: startCase(faker.lorem.words(3)),
-    body: faker.lorem.paragraphs(3),
-    // and so on...
-  })),
+  posts: faker.helpers.multiple(
+    () => ({
+      id: faker.datatype.uuid(),
+      title: faker.lorem.words(3),
+      body: faker.lorem.paragraphs(3),
+    }),
+    { count: 100 },
+  ),
 });
 ```
 
@@ -159,9 +161,3 @@ feature change with our implementation but the `json-server` version doesn't cha
 ```sh
 git tag -fa v0.16.1 -m "Update v0.16.1 tag" && git push origin v0.16.1 --force
 ```
-
-Docker Hub is configured to automatically build on new tags pushed to GitHub.
-
-## Todo
-
-- Add examples of using this with docker cli, without a compose file
