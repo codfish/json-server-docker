@@ -9,8 +9,8 @@
     "lint": "cod-scripts lint"
   },
   "dependencies": {
-    "@babel/runtime": "^7.21.0",
-    "@faker-js/faker": "^8.0.0-alpha.1",
+    "@babel/runtime": "^7.22.3",
+    "@faker-js/faker": "^8.0.2",
     "lodash": "^4.17.21",
     "nodemon": "^2.0.22"
   },
