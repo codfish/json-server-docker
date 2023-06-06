@@ -20,7 +20,6 @@ is not an image for every version. See the available versions
 - [Database File](#database-file)
 - [Maintaining/Contributing](#maintainingcontributing)
   - [Releasing](#releasing)
-- [Todo](#todo)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -75,14 +74,15 @@ should be passed in as environment variables. The currently supported options av
 | `ROUTES`      | Path to routes file                                              | `routes.json` (Stored in image, optionally mount over it)   |
 | `MIDDLEWARES` | Path to middleware file                                          | `middleware.js` (Stored in image, optionally mount over it) |
 | `CONFIG`      | Path to config file                                              | Defers to `json-server` default                             |
+| `SNAPSHOTS`   | Set snapshots directory                                          | Defers to `json-server` default                             |
 | `ID`          | Set database id property (e.g. `address`)                        | Defers to `json-server` default                             |
 | `FKS`         | Set foreign key suffix, (e.g. `Address` as in `contractAddress`) | Defers to `json-server` default                             |
 | `DELAY`       | Add delay to responses (ms)                                      | -                                                           |
 | `STATIC`      | Set static files directory                                       | Defers to `json-server` default                             |
-| `QUIET`       | Suppress log messages from output                                | Boolean flag only true if set                               |
-| `NO_GZIP`     | Disable GZIP Content-Encoding                                    | Boolean flag only true if set                               |
-| `NO_CORS`     | Disable Cross-Origin Resource Sharing                            | Boolean flag only true if set                               |
-| `READ_ONLY`   | Allow only GET requests                                          | Boolean flag only true if set                               |
+| `QUIET`       | Suppress log messages from output                                | Boolean flag only true if set to "true"                     |
+| `NO_GZIP`     | Disable GZIP Content-Encoding                                    | Boolean flag only true if set to "true"                     |
+| `NO_CORS`     | Disable Cross-Origin Resource Sharing                            | Boolean flag only true if set to "true"                     |
+| `READ_ONLY`   | Allow only GET requests                                          | Boolean flag only true if set to "true"                     |
 
 For details on the options
 [view `json-server`'s documentation](https://github.com/typicode/json-server#cli-usage).
@@ -104,8 +104,8 @@ services:
       VIRTUAL_HOST: json-server.docker
       FKS: Address
       ID: address
-      NO_CORS: 'true'
-      NO_GZIP: 'true'
+      NO_CORS: true
+      NO_GZIP: true
 ```
 
 ## Database File

@@ -22,6 +22,10 @@ if [ -n "$STATIC" ]; then
   OPTIONS+=" --static $STATIC"
 fi
 
+if [ -n "$SNAPSHOTS" ]; then
+  OPTIONS+=" --snapshots $SNAPSHOTS"
+fi
+
 if [ "$QUIET" == "true" ]; then
   OPTIONS+=" --quiet"
 fi
