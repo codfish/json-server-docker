@@ -1,15 +1,20 @@
-FROM node:18.15.0-slim
+FROM node:20.2.0-slim
 
 RUN mkdir /app
 WORKDIR /app
 
-ENV JSON_SERVER_VERSION=0.17.3
-
-RUN npm install -g json-server@${JSON_SERVER_VERSION}
 COPY package.json package-lock.json ./
-RUN npm ci --only="prod"
+RUN npm ci --omit=dev
+RUN npm install -g --save-exact json-server@0.17.3 typescript@4.9.5
 
-COPY ./db.js ./middleware.js ./routes.json ./server.sh ./
+# copy in files
+COPY ./tsconfig.json \
+     ./db.js \
+     ./middleware.js \
+     ./routes.json \
+     ./server.sh \
+     ./main.sh ./
 
 EXPOSE 80
-CMD [ "./server.sh" ]
+
+CMD [ "./main.sh" ]
