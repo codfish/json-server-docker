@@ -304,7 +304,7 @@ upper snake-case (i.e. `--no-cors` -> `NO_CORS`).
 | `NO_GZIP`      | Disable GZIP Content-Encoding                                                        | Boolean flag only true if set to "true"                                         |
 | `NO_CORS`      | Disable Cross-Origin Resource Sharing                                                | Boolean flag only true if set to "true"                                         |
 | `READ_ONLY`    | Allow only GET requests                                                              | Boolean flag only true if set to "true"                                         |
-| `DEPENDENCIES` | Install extra npm dependencies in the container for you to use in your server files. | —                                                                               |
+| ⋆ `DEPENDENCIES` | Install extra npm dependencies in the container for you to use in your server files. | —                                                                               |
 
 For details on the options
 [view `json-server`'s documentation](https://github.com/typicode/json-server#cli-usage).
