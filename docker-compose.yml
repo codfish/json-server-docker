@@ -3,11 +3,6 @@ version: '3'
 services:
   basic:
     build: .
-    command: npm run dev
-    volumes:
-      - ./db.js:/app/db.js
-      - ./routes.json:/app/routes.json
-      - ./middleware.js:/app/middleware.js:delegated
     ports:
       - 9999:80
     environment:
@@ -15,7 +10,6 @@ services:
 
   typescript:
     build: .
-    command: npm run dev
     volumes:
       - ./examples/typescript/db.ts:/app/db.ts
       - ./examples/typescript/middleware.ts:/app/middleware.ts:delegated
@@ -26,7 +20,6 @@ services:
 
   json-db:
     build: .
-    command: npm run dev
     volumes:
       - ./examples/json/db.json:/app/db.json
     ports:
@@ -36,7 +29,6 @@ services:
 
   middlewares:
     build: .
-    command: npm run dev
     volumes:
       - ./examples/middlewares/db.json:/app/db.json
       - ./examples/middlewares/middleware_a.ts:/app/middleware_a.ts:delegated
@@ -49,7 +41,6 @@ services:
 
   deps:
     build: .
-    command: npm run dev
     volumes:
       - ./examples/deps/db.js:/app/db.js
     ports:
@@ -60,7 +51,6 @@ services:
 
   dags:
     build: .
-    command: npm run dev
     volumes:
       - ./examples/support-files/db.ts:/app/db.ts
       - ./examples/support-files/fixtures:/app/fixtures

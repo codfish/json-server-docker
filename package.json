@@ -4,26 +4,29 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --exec ./main.sh",
+    "build": "rm -rf dist && tsc",
+    "dev": "nodemon server.mjs",
     "format": "cod-scripts format",
     "lint": "cod-scripts lint"
   },
   "dependencies": {
     "@babel/runtime": "7.22.3",
     "@faker-js/faker": "8.0.2",
-    "@leaflink/dom-testing-utils": "^1.2.1",
     "@types/node": "^20.2.6",
     "chalk": "^5.2.0",
+    "json-server": "^0.17.3",
     "jwt-decode": "^3.1.2",
     "lodash": "4.17.21",
-    "nodemon": "2.0.22"
+    "nodemon": "2.0.22",
+    "typescript": "^4.9.5",
+    "zx": "^7.2.3"
   },
   "devDependencies": {
     "cod-scripts": "^12.1.0"
   },
   "nodemonConfig": {
     "ignore": [
-      "api/",
+      "dist/",
       "package.json",
       "package-lock.json"
     ],
@@ -33,12 +36,9 @@
     "extends": [
       "./node_modules/cod-scripts/eslint.js"
     ],
-    "ignorePatterns": [
-      "node_modules",
-      ".github",
-      "api",
-      "public"
-    ]
+    "globals": {
+      "node": true
+    }
   },
   "husky": {
     "hooks": {

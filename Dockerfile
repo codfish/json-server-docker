@@ -1,20 +1,19 @@
-FROM node:20.2.0-slim
+FROM node:20.9.0-slim
 
 RUN mkdir /app
 WORKDIR /app
 
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
-RUN npm install -g --save-exact json-server@0.17.3 typescript@4.9.5
+RUN npm install -g --save-exact nodemon@3.0.1
 
 # copy in files
 COPY ./tsconfig.json \
      ./db.js \
      ./middleware.js \
      ./routes.json \
-     ./server.sh \
-     ./main.sh ./
+     ./server.mjs ./
 
 EXPOSE 80
 
-CMD [ "./main.sh" ]
+ENTRYPOINT [ "nodemon", "server.mjs" ]
