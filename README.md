@@ -1,7 +1,7 @@
 # json-server-docker
 
-Docker image for building a full fake REST API with
-[json-server](https://github.com/typicode/json-server).
+Dockerized [json-server](https://github.com/typicode/json-server) for building a full fake RESTful
+API.
 
 [![version](https://img.shields.io/docker/v/codfish/json-server/0.17.3)](https://hub.docker.com/r/codfish/json-server)
 [![pulls](https://img.shields.io/docker/pulls/codfish/json-server.svg)](https://hub.docker.com/r/codfish/json-server)
@@ -43,6 +43,7 @@ Docker image for building a full fake REST API with
   [`jwt-decode`](https://github.com/auth0/jwt-decode) in any of the files powering your mock api.
 - 🧳 **Install your own dependencies** - Use the `DEPENDENCIES` envvar to pass a list of additional
   npm dependencies to use in your server files.
+- 🔂 **Hot reloading** the server on any changes.
 
 ## Getting Started
 
@@ -52,7 +53,7 @@ Docker image for building a full fake REST API with
 > image, which might break. Image tags are based off of the
 > [release versions for json-server](https://github.com/typicode/json-server/releases). However
 > there is not an image for every version. See the available versions
-> [here](https://hub.docker.com/r/codfish/json-server).
+> [here](https://hub.docker.com/r/codfish/json-server/tags).
 
 By default, the image runs an instance of `json-server` with some dummy data for show. Spin up the
 example mock api in seconds.
@@ -89,7 +90,6 @@ version: '3'
 services:
   api:
     image: codfish/json-server:0.17.3
-    command: npm run dev
     ports:
       - 9999:80
     volumes:
@@ -98,7 +98,7 @@ services:
       - ./my-routes.json:/app/routes.json:delegated
 ```
 
-Run `docker-compose up api`. Visit <http://localhost:9999/> to see your running JSON Server.
+Run `docker-compose up api`. Visit <http://localhost:9999/> to see your API.
 
 ### Docker cli
 
@@ -107,18 +107,17 @@ docker run -d -p 9999:80 \
   -v ./my-db.js:/app/db.js \
   -v ./my-middleware.js:/app/middleware.json \
   -v ./my-routes.json:/app/routes.json \
-  codfish/json-server:0.17.3 npm run dev
+  codfish/json-server:0.17.3
 ```
 
 ### Advanced
 
-Set configuration
+Set configuration via environment variables.
 
 ```yaml
 services:
   json-server:
     image: codfish/json-server:0.17.3
-    command: npm run dev
     volumes:
       - ./db.ts:/app/db.ts:delegated
       - ./middleware.ts:/app/middleware.ts:delegated
@@ -152,8 +151,6 @@ See all the [available options below](#options).
   - `/app/routes.json` - Custom
     [routes file](https://github.com/typicode/json-server#add-custom-routes).
   - `/public` - Static files directory.
-- Use `npm run dev` as the Docker `command` to enable hot reloading the server on any changes to
-  mounted files.
 
 ## Database File
 
@@ -291,19 +288,19 @@ upper snake-case (i.e. `--no-cors` -> `NO_CORS`).
 
 `⋆` = Custom option. Not an official `json-server` option.
 
-| Option         | Description                                                                          | Default                                                                         |
-| -------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- |
-| `MIDDLEWARES`  | Path to middleware file                                                              | `middleware.js` (Stored in image, optionally mount over it or provide your own) |
-| `CONFIG`       | Path to config file                                                                  | Defers to `json-server` default                                                 |
-| `SNAPSHOTS`    | Set snapshots directory                                                              | Defers to `json-server` default                                                 |
-| `ID`           | Set database id property (e.g. `address`)                                            | Defers to `json-server` default                                                 |
-| `FKS`          | Set foreign key suffix, (e.g. `_id` as in `user_id`)                                 | Defers to `json-server` default                                                 |
-| `DELAY`        | Add delay to responses (ms)                                                          | —                                                                               |
-| `STATIC`       | Set static files directory                                                           | Defers to `json-server` default                                                 |
-| `QUIET`        | Suppress log messages from output                                                    | Boolean flag only true if set to "true"                                         |
-| `NO_GZIP`      | Disable GZIP Content-Encoding                                                        | Boolean flag only true if set to "true"                                         |
-| `NO_CORS`      | Disable Cross-Origin Resource Sharing                                                | Boolean flag only true if set to "true"                                         |
-| `READ_ONLY`    | Allow only GET requests                                                              | Boolean flag only true if set to "true"                                         |
+| Option           | Description                                                                          | Default                                                                         |
+| ---------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- |
+| `MIDDLEWARES`    | Path to middleware file                                                              | `middleware.js` (Stored in image, optionally mount over it or provide your own) |
+| `CONFIG`         | Path to config file                                                                  | Defers to `json-server` default                                                 |
+| `SNAPSHOTS`      | Set snapshots directory                                                              | Defers to `json-server` default                                                 |
+| `ID`             | Set database id property (e.g. `address`)                                            | Defers to `json-server` default                                                 |
+| `FKS`            | Set foreign key suffix, (e.g. `_id` as in `user_id`)                                 | Defers to `json-server` default                                                 |
+| `DELAY`          | Add delay to responses (ms)                                                          | —                                                                               |
+| `STATIC`         | Set static files directory                                                           | Defers to `json-server` default                                                 |
+| `QUIET`          | Suppress log messages from output                                                    | Boolean flag only true if set to "true"                                         |
+| `NO_GZIP`        | Disable GZIP Content-Encoding                                                        | Boolean flag only true if set to "true"                                         |
+| `NO_CORS`        | Disable Cross-Origin Resource Sharing                                                | Boolean flag only true if set to "true"                                         |
+| `READ_ONLY`      | Allow only GET requests                                                              | Boolean flag only true if set to "true"                                         |
 | ⋆ `DEPENDENCIES` | Install extra npm dependencies in the container for you to use in your server files. | —                                                                               |
 
 For details on the options
