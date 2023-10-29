@@ -4,7 +4,9 @@ on:
   push:
     branches: [main]
   release:
-    types: [published]
+    types:
+      - published
+      - edited
 
 jobs:
   publish-to-dockerhub:
