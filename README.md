@@ -162,12 +162,12 @@ example:
 ```js
 // db.js
 const times = require('lodash/times');
-const faker = require('@faker-js/faker');
+const { faker } = require('@faker-js/faker');
 
 module.exports = (req, res) => {
   return {
     posts: times(100, () => ({
-      id: faker.datatype.uuid(),
+      id: faker.string.uuid(),
       title: faker.lorem.words(3),
       body: faker.lorem.paragraphs(3),
     })),
