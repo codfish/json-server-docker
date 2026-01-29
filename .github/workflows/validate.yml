@@ -40,7 +40,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v8
         with:
           script: |
             github.rest.issues.createComment({
