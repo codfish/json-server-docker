@@ -10,7 +10,7 @@
     "lint": "cod-scripts lint"
   },
   "dependencies": {
-    "@babel/runtime": "7.22.3",
+    "@babel/runtime": "7.28.6",
     "@faker-js/faker": "8.4.1",
     "@types/node": "^20.2.6",
     "chalk": "^5.2.0",
