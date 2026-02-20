@@ -12,7 +12,7 @@
   "dependencies": {
     "@babel/runtime": "7.28.6",
     "@faker-js/faker": "8.4.1",
-    "@types/node": "^20.2.6",
+    "@types/node": "^24.0.0",
     "chalk": "^5.2.0",
     "json-server": "^0.17.3",
     "jwt-decode": "^3.1.2",
