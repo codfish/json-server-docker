@@ -1,11 +1,11 @@
-const Chance = require('chance');
-const times = require('lodash/times');
-const emoji = require('node-emoji');
+import Chance from 'chance';
+import times from 'lodash/times';
+import emoji from 'node-emoji';
 
 const chance = new Chance();
 
-module.exports = () => ({
-  animals: times(100, (idx) => {
+export default () => ({
+  animals: times(100, idx => {
     const animal = chance.animal({ type: 'pet' }).replace(/s$/, '').split(' ').pop().toLowerCase();
 
     return {

@@ -1,7 +1,6 @@
 # json-server-docker
 
-Dockerized [json-server](https://github.com/typicode/json-server) for building a full fake RESTful
-API.
+Dockerized [json-server](https://github.com/typicode/json-server) for building a full fake RESTful API.
 
 [![version](https://img.shields.io/docker/v/codfish/json-server/0.17.4)](https://hub.docker.com/r/codfish/json-server)
 [![pulls](https://img.shields.io/docker/pulls/codfish/json-server.svg)](https://hub.docker.com/r/codfish/json-server)
@@ -32,31 +31,29 @@ API.
 ## Features
 
 - 💨 **Up and running quickly** - Spin up a RESTful mock API in seconds.
-- ⚙️ **Configurable** - Supports every `json-server` configuration option, with some purposeful
-  exceptions.
-- <img src="ts.png" width="16" height="16"> **Typescript support** - Use TS for your db, middleware,
-  or any file you mount into the container.
-- 💻 **Mount in any supporting files you'd like!** - For instance, want to use your custom data
-  fixtures, utils, etc. in your db/middleware? Mount them in, import & prosper.
-- 📦 **Useful dependencies are pre-installed** in the image for your convenience. Use
-  [`lodash`](https://lodash.com/), [`@faker-js/faker`](https://github.com/faker-js/faker) &
-  [`jwt-decode`](https://github.com/auth0/jwt-decode) in any of the files powering your mock api.
-- 🧳 **Install your own dependencies** - Use the `DEPENDENCIES` envvar to pass a list of additional
-  npm dependencies to use in your server files.
+- ⚙️ **Configurable** - Supports every `json-server` configuration option, with some purposeful exceptions.
+- <img src="ts.png" width="16" height="16"> **Typescript support** - Use TS for your db, middleware, or any file you
+  mount into the container.
+- 💻 **Mount in any supporting files you'd like!** - For instance, want to use your custom data fixtures, utils, etc. in
+  your db/middleware? Mount them in, import & prosper.
+- 📦 **Useful dependencies are pre-installed** in the image for your convenience. Use [`lodash`](https://lodash.com/),
+  [`@faker-js/faker`](https://github.com/faker-js/faker) & [`jwt-decode`](https://github.com/auth0/jwt-decode) in any of
+  the files powering your mock api.
+- 🧳 **Install your own dependencies** - Use the `DEPENDENCIES` envvar to pass a list of additional npm dependencies to
+  use in your server files.
 - 🔂 **Hot reloading** the server on any changes.
 
 ## Getting Started
 
 **Latest Version**: `codfish/json-server:0.17.4`
 
-> **Note**: It's recommended to specify the tag of the image you want rather than using the latest
-> image, which might break. Image tags are based off of the
-> [release versions for json-server](https://github.com/typicode/json-server/releases). However
-> there is not an image for every version. See the available versions
-> [here](https://hub.docker.com/r/codfish/json-server/tags).
+> **Note**: It's recommended to specify the tag of the image you want rather than using the latest image, which might
+> break. Image tags are based off of the
+> [release versions for json-server](https://github.com/typicode/json-server/releases). However there is not an image
+> for every version. See the available versions [here](https://hub.docker.com/r/codfish/json-server/tags).
 
-By default, the image runs an instance of `json-server` with some dummy data for show. Spin up the
-example mock api in seconds.
+By default, the image runs an instance of `json-server` with some dummy data for show. Spin up the example mock api in
+seconds.
 
 ```sh
 docker run -p 9999:80 codfish/json-server:0.17.4
@@ -64,15 +61,14 @@ docker run -p 9999:80 codfish/json-server:0.17.4
 
 Visit <http://localhost:9999> to see it in action.
 
-That's all good, but not very useful to you. You're meant to mount in your own db file(s) into the
-container. Read on for usage...
+That's all good, but not very useful to you. You're meant to mount in your own db file(s) into the container. Read on
+for usage...
 
 ## Usage
 
 This project actually dogfoods itself. View the [docker-compose.yml](./docker-compose.yml) & the
 [examples/](./examples/) directory to see various usage examples. Also visit the
-[`json-server` docs](https://github.com/typicode/json-server) for more detailed examples on how to
-use the tool.
+[`json-server` docs](https://github.com/typicode/json-server) for more detailed examples on how to use the tool.
 
 **Examples**
 
@@ -133,31 +129,27 @@ See all the [available options below](#options).
 
 ### Important Usage Notes
 
-> - **LIMITATION**: `json-server` ONLY supports `commonjs`! If you try to use any ESM dependency in
->   your db files, it will fail. For our Typescript support, while ESM is supported in your db
->   files, we're [compiling](./tsconfig.json) to target es5 & commonjs and dependencies are not
->   compiled, so when using 3rd party deps, use versions that export commonjs modules.
+> - **LIMITATION**: `json-server` ONLY supports `commonjs`! If you try to use any ESM dependency in your db files, it
+>   will fail. For our Typescript support, while ESM is supported in your db files, we're [compiling](./tsconfig.json)
+>   to target es5 & commonjs and dependencies are not compiled, so when using 3rd party deps, use versions that export
+>   commonjs modules.
 
 - Your `db.{js,ts}` & any middleware files need to return a function as their **default** export.
-- When mounting `*.js` files, make sure they are using commonjs (`modules.exports = ...`). That's
-  what `json-server` is expecting.
-- When mounting `*.ts` files, use ESModules, but instead of using `export default ...`, use
-  `export = ...`.
+- When mounting `*.js` files, make sure they are using commonjs (`modules.exports = ...`). That's what `json-server` is
+  expecting.
+- When mounting `*.ts` files, use ESModules, but instead of using `export default ...`, use `export = ...`.
 - All files should be mounted into the `/app` directory in the container.
 - The following files are special and will "just work" when **mounted over**.
   - `/app/db.{ts,js,json}` - The database file.
-  - `/app/middleware.{ts,js}` - Custom
-    [middleware file](https://github.com/typicode/json-server#add-middlewares).
-  - `/app/routes.json` - Custom
-    [routes file](https://github.com/typicode/json-server#add-custom-routes).
+  - `/app/middleware.{ts,js}` - Custom [middleware file](https://github.com/typicode/json-server#add-middlewares).
+  - `/app/routes.json` - Custom [routes file](https://github.com/typicode/json-server#add-custom-routes).
   - `/public` - Static files directory.
 
 ## Database File
 
-When building your mock api's you'll most like want to generate some fake data and return a number
-of items for a specific collection. [Faker](https://github.com/faker-js/faker) is included in the
-image to help facilitate doing these sorts of things inside your db or middleware files. For
-example:
+When building your mock api's you'll most like want to generate some fake data and return a number of items for a
+specific collection. [Faker](https://github.com/faker-js/faker) is included in the image to help facilitate doing these
+sorts of things inside your db or middleware files. For example:
 
 ```js
 // db.js
@@ -200,12 +192,11 @@ export = (req, res, next) => {
 
 ### Using Multiple Middleware files
 
-Use the `MIDDLEWARES` to pass the
-[`--middlewares`](https://github.com/typicode/json-server#add-middlewares) option to `json-server`.
+Use the `MIDDLEWARES` to pass the [`--middlewares`](https://github.com/typicode/json-server#add-middlewares) option to
+`json-server`.
 
-**Important**: Notice here the files you're mounting in are using \*.ts extentions, but the
-`MIDDLEWARES` env var uses `js` extensions. TS compiling happens _before_ `json-server` loads the
-files.
+**Important**: Notice here the files you're mounting in are using \*.ts extentions, but the `MIDDLEWARES` env var uses
+`js` extensions. TS compiling happens _before_ `json-server` loads the files.
 
 ```yml
 services:
@@ -226,15 +217,12 @@ services:
 
 **Important**
 
-- Instead of using `export default ...`, use `export = ...` for any default exports from your ts
-  files.
-- TS is [configured](./tsconfig.json) to target commonjs es5 modules to work well with
-  `json-server`.
-- A [path alias](https://www.typescriptlang.org/tsconfig#paths) is configured for your convenience
-  to map to the `/app` directory where all server files should be mounted.
-- You can technically mount in your tsconfig file (`-v ./tsconfig.json:/app/tsconfig.json`) with
-  your own configuration file, but beware, `json-server` needs the resulting compiled files to be
-  commonjs modules.
+- Instead of using `export default ...`, use `export = ...` for any default exports from your ts files.
+- TS is [configured](./tsconfig.json) to target commonjs es5 modules to work well with `json-server`.
+- A [path alias](https://www.typescriptlang.org/tsconfig#paths) is configured for your convenience to map to the `/app`
+  directory where all server files should be mounted.
+- You can technically mount in your tsconfig file (`-v ./tsconfig.json:/app/tsconfig.json`) with your own configuration
+  file, but beware, `json-server` needs the resulting compiled files to be commonjs modules.
 
 ```ts
 // db.ts
@@ -268,23 +256,21 @@ docker run -d -p 9999:80 -v ./db.ts:/app/db.ts codfish/json-server
 
 `json-server` cli options: <https://github.com/typicode/json-server#cli-usage>
 
-We will use the default options that `json-server` has set unless an override is provided. For
-certain options like `--port` and `--host` we will explicitly set them to work well within a
-container.
+We will use the default options that `json-server` has set unless an override is provided. For certain options like
+`--port` and `--host` we will explicitly set them to work well within a container.
 
 Here's the list of `json-server` options that are **NOT** configurable:
 
 - `--host` - Always set to `0.0.0.0` within the container.
-- `--port` - Always set to `80` within the container but you're still in full control of what port
-  you want the api to run on on your machine by mapping any port to port `80` on the container (i.e.
-  `docker run -p 9999:80 ...`).
+- `--port` - Always set to `80` within the container but you're still in full control of what port you want the api to
+  run on on your machine by mapping any port to port `80` on the container (i.e. `docker run -p 9999:80 ...`).
 - `--routes` - The `/app/routes.json` will always be the path to the
-  [routes file](https://github.com/typicode/json-server#add-custom-routes) used in the container,
-  but you're free to mount any json file from your machine over it.
+  [routes file](https://github.com/typicode/json-server#add-custom-routes) used in the container, but you're free to
+  mount any json file from your machine over it.
 
-However you still have the ability to override _almost_ every option yourself as well. All options
-should be **passed in as environment variables**. They are named exactly like `json-server`'s but
-upper snake-case (i.e. `--no-cors` -> `NO_CORS`).
+However you still have the ability to override _almost_ every option yourself as well. All options should be **passed in
+as environment variables**. They are named exactly like `json-server`'s but upper snake-case (i.e. `--no-cors` ->
+`NO_CORS`).
 
 `⋆` = Custom option. Not an official `json-server` option.
 
@@ -303,8 +289,7 @@ upper snake-case (i.e. `--no-cors` -> `NO_CORS`).
 | `READ_ONLY`      | Allow only GET requests                                                              | Boolean flag only true if set to "true"                                         |
 | ⋆ `DEPENDENCIES` | Install extra npm dependencies in the container for you to use in your server files. | —                                                                               |
 
-For details on the options
-[view `json-server`'s documentation](https://github.com/typicode/json-server#cli-usage).
+For details on the options [view `json-server`'s documentation](https://github.com/typicode/json-server#cli-usage).
 
 ## Maintaining/Contributing
 
@@ -327,8 +312,8 @@ docker-compose up -d --build
 ```
 
 Visit <http://localhost:9999>. Update [`db.js`](./db.ts), [`routes.json`](./routes.json), or
-[`middleware.ts`](./middleware.ts) to test out functionality. Changes should propagate
-automatically, just refresh the page.
+[`middleware.ts`](./middleware.ts) to test out functionality. Changes should propagate automatically, just refresh the
+page.
 
 ### Releasing
 
@@ -341,8 +326,8 @@ git push origin 0.17.4
 
 **Updating old version**
 
-We keep our versions in sync with `json-server`. This scenario would happen if there's a bug fix or
-feature change with our implementation but the `json-server` version doesn't change.
+We keep our versions in sync with `json-server`. This scenario would happen if there's a bug fix or feature change with
+our implementation but the `json-server` version doesn't change.
 
 ```sh
 git tag -fa 0.16.1 -m "Update 0.16.1 tag" && git push origin 0.16.1 --force

@@ -37,7 +37,7 @@ services:
       - 9996:80
     environment:
       VIRTUAL_HOST: middlewares.json-server.docker
-      MIDDLEWARES: 'middleware_a.js middleware_b.js'
+      MIDDLEWARES: middleware_a.js middleware_b.js
 
   deps:
     build: .
@@ -47,7 +47,7 @@ services:
       - 9995:80
     environment:
       VIRTUAL_HOST: middlewares.json-server.docker
-      DEPENDENCIES: 'chance@1 node-emoji@1'
+      DEPENDENCIES: chance@1 node-emoji@1
 
   dags:
     build: .

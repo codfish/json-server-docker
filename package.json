@@ -2,15 +2,15 @@
   "name": "json-server-docker",
   "version": "0.0.0-semantically-released",
   "private": true,
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "build": "rm -rf dist && tsc",
     "dev": "nodemon server.mjs",
-    "format": "cod-scripts format",
-    "lint": "cod-scripts lint"
+    "format": "eslint --fix",
+    "lint": "eslint"
   },
   "dependencies": {
-    "@babel/runtime": "7.28.6",
     "@faker-js/faker": "8.4.1",
     "@types/node": "^20.2.6",
     "chalk": "^5.2.0",
@@ -22,7 +22,8 @@
     "zx": "^7.2.3"
   },
   "devDependencies": {
-    "cod-scripts": "^12.1.0"
+    "@codfish/eslint-config": "^13.1.2",
+    "eslint": "^10.0.3"
   },
   "nodemonConfig": {
     "ignore": [
@@ -31,18 +32,5 @@
       "package-lock.json"
     ],
     "ext": "js,mjs,ts,json,sh"
-  },
-  "eslintConfig": {
-    "extends": [
-      "./node_modules/cod-scripts/eslint.js"
-    ],
-    "globals": {
-      "node": true
-    }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "cod-scripts pre-commit"
-    }
   }
 }

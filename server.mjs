@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { $, fs } from 'zx';
 import jsonServerCli from 'json-server/lib/cli/run.js';
+import { $, fs } from 'zx';
 
 // Install extra dependencies passed in by the user with the `DEPENDENCIES` envvar.
 // Note: Needs to be done before compiling.

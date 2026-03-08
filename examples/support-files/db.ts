@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+
 import generateDog from './fixtures/dogs';
 
 export = () => ({
