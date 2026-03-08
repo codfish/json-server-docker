@@ -1,11 +1,11 @@
-const { faker } = require('@faker-js/faker');
+import { faker } from '@faker-js/faker';
 
-module.exports = () => ({
+export default () => ({
   users: faker.helpers.multiple(
-    (idx) => ({
+    idx => ({
       id: idx,
       name: faker.person.fullName(),
-      username: faker.internet.userName(),
+      username: faker.internet.username(),
       email: faker.internet.email(),
       phone: faker.phone.number(),
       website: faker.internet.url(),

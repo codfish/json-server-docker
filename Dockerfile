@@ -1,19 +1,21 @@
-FROM node:20.20.0-slim
+FROM node:24-slim
 
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 RUN mkdir /app
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
-RUN npm install -g --save-exact nodemon@3.0.1
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile --prod
 
 # copy in files
 COPY ./tsconfig.json \
      ./db.js \
      ./middleware.js \
-     ./routes.json \
-     ./server.mjs ./
+     ./server.js ./
 
-EXPOSE 80
+EXPOSE 3000
+ENV PORT=3000
 
-ENTRYPOINT [ "nodemon", "server.mjs" ]
+ENTRYPOINT [ "pnpm", "start" ]

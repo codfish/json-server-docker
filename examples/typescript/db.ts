@@ -8,7 +8,7 @@ interface Database {
   }>;
 }
 
-export = (): Database => ({
+export default (): Database => ({
   posts: faker.helpers.multiple(
     () => ({
       id: faker.string.uuid(),

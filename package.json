@@ -2,47 +2,37 @@
   "name": "json-server-docker",
   "version": "0.0.0-semantically-released",
   "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.30.3",
   "license": "MIT",
   "scripts": {
+    "start": "nodemon server.js",
     "build": "rm -rf dist && tsc",
-    "dev": "nodemon server.mjs",
-    "format": "cod-scripts format",
-    "lint": "cod-scripts lint"
+    "typecheck": "tsc --noEmit",
+    "format": "eslint --fix",
+    "lint": "eslint"
   },
   "dependencies": {
-    "@babel/runtime": "7.28.6",
-    "@faker-js/faker": "8.4.1",
-    "@types/node": "^20.2.6",
+    "@faker-js/faker": "^10.3.0",
+    "@types/node": "^24.0.0",
     "chalk": "^5.2.0",
-    "json-server": "^0.17.4",
-    "jwt-decode": "^3.1.2",
-    "lodash": "4.17.23",
-    "nodemon": "3.1.13",
-    "typescript": "^4.9.5",
-    "zx": "^7.2.3"
+    "json-server": "1.0.0-beta.12",
+    "lodash-es": "^4.17.21",
+    "lowdb": "^7.0.0",
+    "nodemon": "^3.1.0",
+    "typescript": "^5.8.0",
+    "zx": "^8.8.5"
   },
   "devDependencies": {
-    "cod-scripts": "^12.1.0"
+    "@codfish/eslint-config": "^13.1.2",
+    "eslint": "^10.0.3"
   },
   "nodemonConfig": {
     "ignore": [
       "dist/",
       "package.json",
-      "package-lock.json"
+      "pnpm-lock.yaml"
     ],
-    "ext": "js,mjs,ts,json,sh"
-  },
-  "eslintConfig": {
-    "extends": [
-      "./node_modules/cod-scripts/eslint.js"
-    ],
-    "globals": {
-      "node": true
-    }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "cod-scripts pre-commit"
-    }
+    "ext": "js,mjs,ts,json"
   }
 }
