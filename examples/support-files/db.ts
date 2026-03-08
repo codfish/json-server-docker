@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 
-import generateDog from './fixtures/dogs';
+import generateDog from './fixtures/dogs.js';
 
-export = () => ({
+export default () => ({
   dags: faker.helpers.multiple(generateDog, { count: 10 }),
 });

@@ -1,3 +1,3 @@
-export = (req, res, next) => {
+export default (req, res, next) => {
   next();
 };

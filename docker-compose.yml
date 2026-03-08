@@ -3,58 +3,74 @@ version: '3'
 services:
   basic:
     build: .
+    volumes:
+      - ./server.js:/app/server.js:delegated
+      - ./middleware.js:/app/middleware.js:delegated
+      - ./db.js:/app/db.js:delegated
     ports:
-      - 9999:80
+      - 3000:3000
     environment:
+      PORT: 3000
       VIRTUAL_HOST: json-server.docker
 
   typescript:
     build: .
     volumes:
+      - ./server.js:/app/server.js:delegated
       - ./examples/typescript/db.ts:/app/db.ts
       - ./examples/typescript/middleware.ts:/app/middleware.ts:delegated
     ports:
-      - 9998:80
+      - 9998:9998
     environment:
+      PORT: 9998
       VIRTUAL_HOST: typescript.json-server.docker
 
   json-db:
     build: .
     volumes:
+      - ./server.js:/app/server.js:delegated
+      - ./middleware.js:/app/middleware.js:delegated
       - ./examples/json/db.json:/app/db.json
     ports:
-      - 9997:80
+      - 9997:9997
     environment:
-      VIRTUAL_HOST: typescript.json-server.docker
+      PORT: 9997
+      VIRTUAL_HOST: json-db.json-server.docker
 
   middlewares:
     build: .
     volumes:
+      - ./server.js:/app/server.js:delegated
       - ./examples/middlewares/db.json:/app/db.json
-      - ./examples/middlewares/middleware_a.ts:/app/middleware_a.ts:delegated
-      - ./examples/middlewares/middleware_b.ts:/app/middleware_b.ts:delegated
+      - ./examples/middlewares/middleware.ts:/app/middleware.ts:delegated
     ports:
-      - 9996:80
+      - 9996:9996
     environment:
+      PORT: 9996
       VIRTUAL_HOST: middlewares.json-server.docker
-      MIDDLEWARES: middleware_a.js middleware_b.js
 
   deps:
     build: .
     volumes:
+      - ./server.js:/app/server.js:delegated
+      - ./middleware.js:/app/middleware.js:delegated
       - ./examples/deps/db.js:/app/db.js
     ports:
-      - 9995:80
+      - 9995:9995
     environment:
-      VIRTUAL_HOST: middlewares.json-server.docker
+      PORT: 9995
+      VIRTUAL_HOST: deps.json-server.docker
       DEPENDENCIES: chance@1 node-emoji@1
 
   dags:
     build: .
     volumes:
+      - ./server.js:/app/server.js:delegated
+      - ./middleware.js:/app/middleware.js:delegated
       - ./examples/support-files/db.ts:/app/db.ts
       - ./examples/support-files/fixtures:/app/fixtures
     ports:
-      - 9994:80
+      - 9994:9994
     environment:
+      PORT: 9994
       VIRTUAL_HOST: dags.json-server.docker

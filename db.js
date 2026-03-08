@@ -5,7 +5,7 @@ export default () => ({
     idx => ({
       id: idx,
       name: faker.person.fullName(),
-      username: faker.internet.userName(),
+      username: faker.internet.username(),
       email: faker.internet.email(),
       phone: faker.phone.number(),
       website: faker.internet.url(),
