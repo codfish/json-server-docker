@@ -3,7 +3,7 @@
 Dockerized [json-server](https://github.com/typicode/json-server) for building a full fake RESTful
 API.
 
-[![version](https://img.shields.io/docker/v/codfish/json-server/0.17.3)](https://hub.docker.com/r/codfish/json-server)
+[![version](https://img.shields.io/docker/v/codfish/json-server/0.17.4)](https://hub.docker.com/r/codfish/json-server)
 [![pulls](https://img.shields.io/docker/pulls/codfish/json-server.svg)](https://hub.docker.com/r/codfish/json-server)
 [![MIT License](https://img.shields.io/github/license/codfish/json-server-docker)](http://opensource.org/licenses/MIT)
 
@@ -47,7 +47,7 @@ API.
 
 ## Getting Started
 
-**Latest Version**: `codfish/json-server:0.17.3`
+**Latest Version**: `codfish/json-server:0.17.4`
 
 > **Note**: It's recommended to specify the tag of the image you want rather than using the latest
 > image, which might break. Image tags are based off of the
@@ -59,7 +59,7 @@ By default, the image runs an instance of `json-server` with some dummy data for
 example mock api in seconds.
 
 ```sh
-docker run -p 9999:80 codfish/json-server:0.17.3
+docker run -p 9999:80 codfish/json-server:0.17.4
 ```
 
 Visit <http://localhost:9999> to see it in action.
@@ -89,7 +89,7 @@ version: '3'
 
 services:
   api:
-    image: codfish/json-server:0.17.3
+    image: codfish/json-server:0.17.4
     ports:
       - 9999:80
     volumes:
@@ -107,7 +107,7 @@ docker run -d -p 9999:80 \
   -v ./my-db.js:/app/db.js \
   -v ./my-middleware.js:/app/middleware.json \
   -v ./my-routes.json:/app/routes.json \
-  codfish/json-server:0.17.3
+  codfish/json-server:0.17.4
 ```
 
 ### Advanced
@@ -117,7 +117,7 @@ Set configuration via environment variables.
 ```yaml
 services:
   json-server:
-    image: codfish/json-server:0.17.3
+    image: codfish/json-server:0.17.4
     volumes:
       - ./db.ts:/app/db.ts:delegated
       - ./middleware.ts:/app/middleware.ts:delegated
@@ -318,7 +318,7 @@ docker-compose up -d
 
 **To update:**
 
-- Bump version of `json-server` in [`Dockerfile`](./Dockerfile)
+- Bump version of `json-server` in [`package.json`](./package.json)
 - Bump node dependencies
 - Test it out
 
@@ -335,8 +335,8 @@ automatically, just refresh the page.
 **New version**:
 
 ```sh
-git tag -f -m '0.17.3' 0.17.3
-git push origin 0.17.3
+git tag -f -m '0.17.4' 0.17.4
+git push origin 0.17.4
 ```
 
 **Updating old version**
