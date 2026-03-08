@@ -8,7 +8,7 @@ export default () => ({
     const animal = chance.animal({ type: 'pet' }).replace(/s$/, '').split(' ').pop().toLowerCase();
 
     return {
-      id: idx + 1,
+      id: `${idx + 1}`,
       animal,
       emoji: emoji.find(animal)?.emoji || '🦄',
       name: chance.name({ middle: true }),
