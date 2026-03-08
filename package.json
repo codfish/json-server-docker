@@ -14,7 +14,7 @@
     "@faker-js/faker": "8.4.1",
     "@types/node": "^20.2.6",
     "chalk": "^5.2.0",
-    "json-server": "^0.17.3",
+    "json-server": "^0.17.4",
     "jwt-decode": "^3.1.2",
     "lodash": "4.17.23",
     "nodemon": "3.1.13",
