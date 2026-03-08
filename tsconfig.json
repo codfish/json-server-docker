@@ -1,13 +1,10 @@
 {
   "include": ["**/*.ts", "**/*.js"],
-  "exclude": ["dist", "examples", "node_modules"],
+  "exclude": ["dist/**", "examples/**", "node_modules/**"],
   "compilerOptions": {
     "target": "es2022",
     "module": "nodenext",
     "moduleResolution": "nodenext",
-    "paths": {
-      "@/*": ["./api/*"]
-    },
     "allowJs": true,
     "checkJs": false,
     "outDir": "./dist",

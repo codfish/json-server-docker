@@ -17,8 +17,8 @@ if (await fs.exists('.cache')) {
 }
 
 if (extraDeps && cache.trim() !== extraDeps) {
-  const command = `pnpm add --save-false ${process.env.DEPENDENCIES}`;
-  await $([command]);
+  const deps = process.env.DEPENDENCIES.split(/\s+/).filter(Boolean);
+  await $`pnpm add ${deps}`;
   await fs.writeFile('.cache', extraDeps);
 }
 
@@ -67,7 +67,13 @@ if (await fs.pathExists('./dist/public')) {
   staticDirs.push('dist/public');
 }
 if (process.env.STATIC) {
-  staticDirs.push(process.env.STATIC);
+  const staticPath = process.env.STATIC;
+  if (staticPath.includes('..')) {
+    // eslint-disable-next-line no-console
+    console.error(`STATIC path must not contain '..'. Got: ${staticPath}`);
+    process.exit(1);
+  }
+  staticDirs.push(staticPath);
 }
 
 const app = createApp(db, {

@@ -74,7 +74,7 @@ for usage...
 > It's recommended to specify the tag of the image you want rather than using the latest image, which might break. Image
 > tags are based off of the [release versions for json-server](https://github.com/typicode/json-server/releases).
 > However there is not an image for every version. See the available versions
-> [here](https://hub.docker.com/r/codfish/json-server/tags).
+> [on Docker Hub](https://hub.docker.com/r/codfish/json-server/tags).
 
 This project actually dogfoods itself. View the [docker-compose.yml](./docker-compose.yml) & the
 [examples/](./examples/) directory to see various usage examples. Also visit the
