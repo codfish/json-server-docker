@@ -74,7 +74,7 @@ for usage...
 > It's recommended to specify the tag of the image you want rather than using the latest image, which might break. Image
 > tags are based off of the [release versions for json-server](https://github.com/typicode/json-server/releases).
 > However there is not an image for every version. See the available versions
-> [here](https://hub.docker.com/r/codfish/json-server/tags).
+> [on Docker Hub](https://hub.docker.com/r/codfish/json-server/tags).
 
 This project actually dogfoods itself. View the [docker-compose.yml](./docker-compose.yml) & the
 [examples/](./examples/) directory to see various usage examples. Also visit the
@@ -87,6 +87,7 @@ This project actually dogfoods itself. View the [docker-compose.yml](./docker-co
 - [Typescript](./examples/typescript/)
 - [Mount in additional files](./examples/support-files/)
 - [Custom middleware](./examples/middlewares/)
+- [Static files](./examples/static/)
 
 ### Docker Compose (Recommended)
 
@@ -137,6 +138,9 @@ See all the [available options below](#options).
 
 ### Important Usage Notes
 
+- **IDs must be strings.** json-server v1 uses strict equality (`===`) to match URL params against record IDs. Since URL
+  params are always strings, integer IDs will never match on individual resource lookups (e.g., `GET /users/1`). Use
+  string IDs like `"1"` or UUIDs.
 - All mounted files should use **ESM syntax** (`import`/`export default`).
 - All files should be mounted into the `/app` directory in the container.
 - The following files are special and will "just work" when **mounted over**:
@@ -233,8 +237,13 @@ supported:
 | Option         | Description                                                                          | Default |
 | -------------- | ------------------------------------------------------------------------------------ | ------- |
 | `DEPENDENCIES` | Install extra npm dependencies in the container for you to use in your server files. | —       |
-| `STATIC`       | Set static files directory                                                           | —       |
+| `STATIC`       | Serve an additional static files directory (`./public` is always served)             | —       |
 | `PORT`         | Set the port the server listens on inside the container.                             | 3000    |
+
+> [!CAUTION]
+>
+> The `DEPENDENCIES` env var runs `pnpm add` with whatever packages you specify. A malicious package's install script
+> will execute inside the container. Only use packages you trust.
 
 ## Query Parameters
 
@@ -272,6 +281,7 @@ to a directory in [examples/](./examples/).
 | `docker-compose up json-db`     | 9997 | Plain JSON database file                              |
 | `docker-compose up middlewares` | 9996 | Custom middleware that sets response headers          |
 | `docker-compose up deps`        | 9995 | Extra dependencies installed via `DEPENDENCIES` envar |
+| `docker-compose up static`      | 9993 | Custom public directory with static HTML              |
 | `docker-compose up dags`        | 9994 | Supporting files mounted alongside the db             |
 
 Run all examples:

@@ -1,1 +1,10 @@
+.git
+.github
+.nvmrc
+dist
+examples
 node_modules
+README.md
+ts.png
+docker-compose.yml
+eslint.config.js

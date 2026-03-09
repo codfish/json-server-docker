@@ -62,6 +62,19 @@ services:
       VIRTUAL_HOST: deps.json-server.docker
       DEPENDENCIES: chance@1 node-emoji@1
 
+  static:
+    build: .
+    volumes:
+      - ./server.js:/app/server.js:delegated
+      - ./middleware.js:/app/middleware.js:delegated
+      - ./examples/static/db.json:/app/db.json
+      - ./examples/static/public:/app/public
+    ports:
+      - 9993:9993
+    environment:
+      PORT: 9993
+      VIRTUAL_HOST: static.json-server.docker
+
   dags:
     build: .
     volumes:
