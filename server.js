@@ -68,9 +68,9 @@ if (await fs.pathExists('./dist/public')) {
 }
 if (process.env.STATIC) {
   const staticPath = process.env.STATIC;
-  if (staticPath.includes('..')) {
+  if (staticPath.includes('..') || staticPath.startsWith('/')) {
     // eslint-disable-next-line no-console
-    console.error(`STATIC path must not contain '..'. Got: ${staticPath}`);
+    console.error(`STATIC path must be relative and not contain '..'. Got: ${staticPath}`);
     process.exit(1);
   }
   staticDirs.push(staticPath);
