@@ -2,11 +2,8 @@ name: Publish Docker Image
 
 on:
   push:
-    branches: [main]
-  release:
-    types:
-      - published
-      - edited
+    tags:
+      - '*'
 
 jobs:
   publish-to-dockerhub:

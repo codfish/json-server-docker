@@ -316,10 +316,11 @@ functionality. Changes should propagate automatically, just refresh the page.
 **New version**:
 
 ```sh
-git tag -f -m '1.0.0-beta.12' 1.0.0-beta.12
+git tag -m '1.0.0-beta.12' 1.0.0-beta.12
 git push origin 1.0.0-beta.12
-gh release create 1.0.0-beta.12 --title "1.0.0-beta.12" --notes "1.0.0-beta.12" [--prerelease]
 ```
+
+Pushing a tag triggers the release workflow, which builds and pushes the Docker image tagged with the version.
 
 **Updating old version**
 
@@ -329,3 +330,5 @@ our implementation but the `json-server` version doesn't change.
 ```sh
 git tag -fa 1.0.0-beta.12 -m "Update 1.0.0-beta.12 tag" && git push origin 1.0.0-beta.12 --force
 ```
+
+Force-pushing the tag re-triggers the release workflow to rebuild the image.
