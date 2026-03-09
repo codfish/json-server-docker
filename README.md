@@ -2,7 +2,7 @@
 
 Dockerized [json-server](https://github.com/typicode/json-server) for building a full fake RESTful API.
 
-[![version](https://img.shields.io/docker/v/codfish/json-server/1.0.0-beta.12)](https://hub.docker.com/r/codfish/json-server)
+[![json-server version](https://img.shields.io/docker/v/codfish/json-server/1.0.0-beta.12)](https://hub.docker.com/r/codfish/json-server)
 [![pulls](https://img.shields.io/docker/pulls/codfish/json-server.svg)](https://hub.docker.com/r/codfish/json-server)
 [![MIT License](https://img.shields.io/github/license/codfish/json-server-docker)](http://opensource.org/licenses/MIT)
 
@@ -318,6 +318,7 @@ functionality. Changes should propagate automatically, just refresh the page.
 ```sh
 git tag -f -m '1.0.0-beta.12' 1.0.0-beta.12
 git push origin 1.0.0-beta.12
+gh release create 1.0.0-beta.12 --title "1.0.0-beta.12" --notes "1.0.0-beta.12" [--prerelease]
 ```
 
 **Updating old version**
