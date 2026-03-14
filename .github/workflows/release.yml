@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - '*'
+  workflow_call:
+    inputs:
+      version:
+        description: Version tag to publish (e.g. 1.0.0-beta.13)
+        required: false
+        type: string
 
 jobs:
   publish-to-dockerhub:
@@ -24,6 +30,9 @@ jobs:
         uses: docker/metadata-action@v6
         with:
           images: codfish/json-server
+          tags: |
+            type=raw,value=${{ inputs.version }},enable=${{ inputs.version != '' }}
+            type=ref,event=tag,enable=${{ inputs.version == '' }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v7
