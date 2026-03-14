@@ -2,7 +2,7 @@
 
 Dockerized [json-server](https://github.com/typicode/json-server) for building a full fake RESTful API.
 
-[![json-server version](https://img.shields.io/docker/v/codfish/json-server/1.0.0-beta.12)](https://hub.docker.com/r/codfish/json-server)
+[![json-server version](https://img.shields.io/docker/v/codfish/json-server)](https://hub.docker.com/r/codfish/json-server)
 [![pulls](https://img.shields.io/docker/pulls/codfish/json-server.svg)](https://hub.docker.com/r/codfish/json-server)
 [![MIT License](https://img.shields.io/github/license/codfish/json-server-docker)](http://opensource.org/licenses/MIT)
 
