@@ -12,6 +12,8 @@ jobs:
   auto-tag:
     name: Auto-tag based on json-server version
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.tag.outputs.version }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v6
@@ -19,6 +21,7 @@ jobs:
           fetch-depth: 0
 
       - name: Create or update tag
+        id: tag
         run: |
           VERSION=$(jq -r '.dependencies["json-server"]' package.json)
           if [ -z "$VERSION" ] || [ "$VERSION" = "null" ]; then
@@ -27,6 +30,7 @@ jobs:
           fi
           LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
 
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "json-server version: $VERSION"
           echo "Latest tag: $LATEST_TAG"
 
@@ -42,3 +46,10 @@ jobs:
             git tag -a "$VERSION" -m "$VERSION"
             git push origin "$VERSION" --force
           fi
+
+  release:
+    needs: auto-tag
+    uses: ./.github/workflows/release.yml
+    with:
+      version: ${{ needs.auto-tag.outputs.version }}
+    secrets: inherit
