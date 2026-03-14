@@ -91,3 +91,7 @@ typings/
 .dynamodb/
 
 dist
+
+.claude/*
+!.claude/settings.json
+!.claude/skills

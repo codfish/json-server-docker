@@ -1,0 +1,44 @@
+name: Auto Tag
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  auto-tag:
+    name: Auto-tag based on json-server version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Create or update tag
+        run: |
+          VERSION=$(jq -r '.dependencies["json-server"]' package.json)
+          if [ -z "$VERSION" ] || [ "$VERSION" = "null" ]; then
+            echo "Error: Could not extract json-server version from package.json"
+            exit 1
+          fi
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+
+          echo "json-server version: $VERSION"
+          echo "Latest tag: $LATEST_TAG"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if [ "$LATEST_TAG" = "$VERSION" ]; then
+            echo "Tag $VERSION already exists, updating to current commit..."
+            git tag -fa "$VERSION" -m "Update $VERSION tag"
+            git push origin "$VERSION" --force
+          else
+            echo "Creating new tag $VERSION..."
+            git tag -a "$VERSION" -m "$VERSION"
+            git push origin "$VERSION" --force
+          fi
