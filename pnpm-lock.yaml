@@ -18,8 +18,8 @@ importers:
         specifier: ^5.2.0
         version: 5.6.2
       json-server:
-        specifier: 1.0.0-beta.13
-        version: 1.0.0-beta.13
+        specifier: 1.0.0-beta.15
+        version: 1.0.0-beta.15
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.23
@@ -1382,8 +1382,8 @@ packages:
   json-schema-traverse@1.0.0:
     resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
 
-  json-server@1.0.0-beta.13:
-    resolution: {integrity: sha512-WYSvMgqNE1YkTlX2GudSKLewFfAQJ+0YE31pdXynFoN9e1O/T+tLepG/wrtC0q1+CnEjmol4h2VT0PIwxjy/Pw==}
+  json-server@1.0.0-beta.15:
+    resolution: {integrity: sha512-I5UB/OWHLGoQW9IVld2yzZFYYiGYNBn2OYRlGbkfj5xDidT26yKYkV7Sr093zJtPh9zbofaLgyT89Ov5U0RRBQ==}
     engines: {node: '>=22.12.0'}
     hasBin: true
 
@@ -3753,7 +3753,7 @@ snapshots:
 
   json-schema-traverse@1.0.0: {}
 
-  json-server@1.0.0-beta.13:
+  json-server@1.0.0-beta.15:
     dependencies:
       '@tinyhttp/app': 3.0.6
       '@tinyhttp/cors': 2.0.1
