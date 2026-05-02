@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: codfish/actions/setup-node-and-install@v3
+      - uses: codfish/actions/setup-node-and-install@v4
 
       - name: typecheck ts
         run: pnpm typecheck
@@ -38,7 +38,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - uses: codfish/actions/comment@v3
+      - uses: codfish/actions/comment@v4
         with:
           message:
             "🚀 PR build published. Run \\`docker run -p 3000:3000 codfish/json-server@${{ steps.build.outputs.digest
